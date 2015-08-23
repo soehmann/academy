@@ -1,0 +1,45 @@
+defaultTasks 'remember'
+
+task merkur << { 
+	println 'Merkur' 
+}
+
+merkur.doFirst {
+	println 'Sonne'
+}
+
+task venus(dependsOn: 'merkur') << { 
+	println 'Venus' 
+}
+
+task earth(dependsOn: 'venus') << { 
+	println 'Erde' 
+}
+
+task mars(dependsOn: 'earth') << {
+	println 'Mars'
+}
+
+task jupiter(dependsOn: 'mars') << {
+        println 'Jupiter'
+}
+
+task saturn(dependsOn: 'jupiter') << {
+        println 'Saturn'
+}
+
+task uranus(dependsOn: 'saturn') << {
+        println 'Uranus'
+}
+
+task neptun(dependsOn: 'uranus') << {
+        println 'Neptun'
+}
+
+neptun.doLast {
+	tasks['remember'].execute()
+}
+
+task remember << {
+	println 'Mein Vater erklärt mir jeden Sonntag unseren Nachthimmel.'
+}

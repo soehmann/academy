@@ -1,0 +1,13 @@
+task upper << { 
+	String someString = 'my_nAMe'; 
+	println "Original: $someString";
+	println "Upper case: ${someString.toUpperCase()}"
+}
+
+task count << { 
+	4.times { print " $it " } 
+}
+
+task intro( dependsOn: count ) << { 
+	println "I'm Gradle" 
+}

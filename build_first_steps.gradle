@@ -1,0 +1,10 @@
+task hugo << { 
+	println "hugo task running"
+}
+
+task boss << { 
+	println "I'm the boss" 
+}
+
+//defaultTasks 'boss'
+
