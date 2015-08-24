@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+task hugo << {
+  String dirPath = System.getProperty('source')
+  if(dirPath == null || dirPath.trim().empty) {
+    println "No directory parameter found"
+  } else {
+    println "Directory path $dirPath found"
+    fileList(dirPath).each { File file ->
+      println "File ${file.name} found"
+    }
+  }
+}
+
+File[] fileList(String dir) {
+    file(dir).listFiles({file -> file.isFile() } as FileFilter).sort()
+}
