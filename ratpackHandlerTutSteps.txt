@@ -1,0 +1,39 @@
+Ratpack handler tutorial
+-----------------------------
+
+* lazybones create ratpack hugo
+* cd hugo
+* ./gradlew idea
+* open with idea
+  
+  get { context.response.send("Hello World!\n") }
+  
+  get { response.send("Hello World!\n") }
+  
+  all { response.send("Everything or every method ${context.request.method.name} is ok\n") }
+  
+  get('user') { response.send("Hello new Ratpack user!\n") }
+  
+  post('chapter') { response.send("Yeah POST !\n") }
+  
+  prefix('person') {
+    get(':name') { response.send("Hello Person ${context.allPathTokens['name']}!\n") }
+    
+    get { response.send("No person found :-(\n") }
+    
+    post { response.send("Yeah POST !\n") } //Don't work !
+  }
+  
+  path('book/:title') {
+    byMethod {
+      get { response.send("I like to read the book: ${context.allPathTokens['title']}!\n") }
+
+      post { response.send("I've read ${context.allPathTokens['title']}!\n") }
+    }
+  }
+  
+  prefix('love') {
+    prefix(':name') {
+      get(new MyHandler())
+    }
+  }
